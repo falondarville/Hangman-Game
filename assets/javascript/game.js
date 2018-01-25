@@ -1,8 +1,19 @@
-// trigger first hangman when the player presses any key 
+//starting variables 
+
+let wordBank = ["doublethink", "winston", "proles", "oceania", "newspeak", "ingsoc", "speakwrite", "telescreen", "thoughtcrime", "revolution", "julia", "oldspeak", "brotherhood", "facecrime", "joycamp"];
+let score = 0;
+let wins = 0;
+let guessesRemaining = 15;
+
+// START GAME: trigger first hangman when the player presses any key 
 
 	//when user clicks any key --> first puzzle appears
 	//one time event per page load
 	//populate how many lines/letters are in the word
+
+let triggerQuestion = wordBank[Math.floor(Math.random()*wordBank.length)];
+
+console.log(triggerQuestion);
 
 // count the number of wins that a play has during the session
 
