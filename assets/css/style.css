@@ -1,0 +1,17 @@
+.jumbotron .container img {
+	max-width: 270px;
+}
+
+.jumbotron .container h1 {
+	font-family: 'Anton', sans-serif;
+}
+
+.card {
+	margin-bottom: 40px; 
+}
+
+.card .card-body a {
+	text-decoration: none;
+	color: black;
+}
+
