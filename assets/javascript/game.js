@@ -13,8 +13,9 @@ let wordArray = [];
 
 let remainingLetters = currentWord.length;
 
+//for testing
 console.log(currentWord);
-document.getElementById("wordAppear").innerHTML = wordArray;
+console.log(wordArray);
 
 // START GAME: trigger first hangman when the player presses any key 
 
@@ -22,11 +23,11 @@ document.getElementById("wordAppear").innerHTML = wordArray;
 	//one time event per page load
 	//populate how many lines/letters are in the word
 
-function startGame {
-	//onkeypress -- does this go in HTML?
+function startGame() {
+	//corresponds with HTML onkeydown
+	//this portion doesn't work
+	document.getElementById("wordAppear").innerHTML = wordArray;
 }
-
-document.write(triggerQuestion);
 
 // count the number of wins that a play has during the session
 
