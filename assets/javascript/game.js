@@ -4,6 +4,17 @@ let wordBank = ["doublethink", "winston", "proles", "oceania", "newspeak", "ings
 let score = 0;
 let wins = 0;
 let guessesRemaining = 15;
+let currentWord = wordBank[Math.floor(Math.random()*wordBank.length)];
+
+let wordArray = [];
+	for (var i = 0; i < currentWord.length; i++) {
+		wordArray[i] = "_";
+	}
+
+let remainingLetters = currentWord.length;
+
+console.log(currentWord);
+document.getElementById("wordAppear").innerHTML = wordArray;
 
 // START GAME: trigger first hangman when the player presses any key 
 
@@ -11,9 +22,11 @@ let guessesRemaining = 15;
 	//one time event per page load
 	//populate how many lines/letters are in the word
 
-let triggerQuestion = wordBank[Math.floor(Math.random()*wordBank.length)];
+function startGame {
+	//onkeypress -- does this go in HTML?
+}
 
-console.log(triggerQuestion);
+document.write(triggerQuestion);
 
 // count the number of wins that a play has during the session
 
