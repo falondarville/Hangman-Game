@@ -8,7 +8,7 @@ let currentWord = wordBank[Math.floor(Math.random()*wordBank.length)];
 
 let wordArray = [];
 	for (var i = 0; i < currentWord.length; i++) {
-		wordArray[i] = "_";
+		wordArray[i] = "  ___  ";
 	}
 
 let remainingLetters = currentWord.length;
@@ -18,16 +18,15 @@ console.log(currentWord);
 console.log(wordArray);
 
 // START GAME: trigger first hangman when the player presses any key 
-
-	//when user clicks any key --> first puzzle appears
-	//one time event per page load
 	//populate how many lines/letters are in the word
 
-function startGame() {
-	//corresponds with HTML onkeydown
-	//this portion doesn't work
-	document.getElementById("wordAppear").innerHTML = wordArray;
-}
+	document.onkeyup = function(event) {
+		let letter = String.fromCharCode(event.keyCode).toLowerCase();
+		document.getElementById("wordAppear").innerHTML = wordArray.join("");
+	}
+
+// populate the correctly guessed letters on the hangman game
+	//put letters in correct spot locations
 
 // count the number of wins that a play has during the session
 
@@ -45,9 +44,6 @@ function startGame() {
 	//list all letters that player types on keyboard
 	//include letters guessed correctly
 
-// populate the correctly guessed letters on the hangman game
-
-	//put letters in correct spot locations
 
 // trigger choosing another word when the play wins or loses the game
 
