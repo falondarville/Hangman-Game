@@ -1,29 +1,41 @@
-//starting variables 
-
 let wordBank = ["doublethink", "winston", "proles", "oceania", "newspeak", "ingsoc", "speakwrite", "telescreen", "thoughtcrime", "revolution", "julia", "oldspeak", "brotherhood", "facecrime", "joycamp"];
 let score = 0;
 let wins = 0;
 let guessesRemaining = 15;
 let currentWord = wordBank[Math.floor(Math.random()*wordBank.length)];
-
-let wordArray = [];
-	for (var i = 0; i < currentWord.length; i++) {
-		wordArray[i] = "  ___  ";
-	}
-
+let lettersUsed = [];
+let lettersGuess = lettersUsed.length;
 let remainingLetters = currentWord.length;
 
-//for testing
-console.log(currentWord);
-console.log(wordArray);
+	// Keeps track of letters used and manages change of array
 
-// START GAME: trigger first hangman when the player presses any key 
-	//populate how many lines/letters are in the word
+	updateLetters = function() {
+		let wordArray = [];
+			for (var i = 0; i < currentWord.length; i++) {
+				wordArray[i] = "  ___  ";
+			if (lettersUsed.indexOf(currentWord[i]) > -1) {
+				console.log(lettersUsed.join());
+			}
+		}
+		document.getElementById("wordAppear").innerHTML = wordArray.join("");
+	}
+
+	//TESTING
+
+updateLetters();
+console.log(currentWord);
+
+	// START GAME: trigger first hangman when the player presses any key 
 
 	document.onkeyup = function(event) {
 		let letter = String.fromCharCode(event.keyCode).toLowerCase();
-		document.getElementById("wordAppear").innerHTML = wordArray.join("");
+		
+		lettersUsed.push(letter);
+		lettersGuess = lettersUsed.length;
+		updateLetters();
 	}
+
+//need to account for typing same letter more than one time
 
 // populate the correctly guessed letters on the hangman game
 	//put letters in correct spot locations
@@ -32,7 +44,6 @@ console.log(wordArray);
 
 	//start at 0 and add one per time that a user completes the puzzle before the 
 	//max number of guesses is over
-	//refreshes with page load?
 
 // count the number of guesses remaining
 
@@ -43,7 +54,6 @@ console.log(wordArray);
 
 	//list all letters that player types on keyboard
 	//include letters guessed correctly
-
 
 // trigger choosing another word when the play wins or loses the game
 
