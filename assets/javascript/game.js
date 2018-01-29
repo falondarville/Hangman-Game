@@ -18,6 +18,7 @@ let remainingLetters = currentWord.length;
 				wordArray[i] = currentWord[i];
 			}
 		}
+
 		document.getElementById("wordAppear").innerHTML = wordArray.join("");
 		document.getElementById("lettersGuessed").innerHTML = lettersUsed;
 		// document.getElementById("guessesRemaining").innerHTML = // code this
@@ -34,15 +35,20 @@ console.log(currentWord);
 	// START GAME: trigger first hangman when the player presses any key 
 
 	document.onkeyup = function(event) {
-		let letter = String.fromCharCode(event.keyCode).toLowerCase();
-		if (lettersUsed.indexOf(letter) == -1) {
-			lettersUsed.push(letter);
+		if (lettersGuess === 15) {
+			currentWord = wordBank[Math.floor(Math.random()*wordBank.length)];
+			lettersUsed = [];
+			guessesRemaining = 15;	
+			alert("max guesses");
+		} else {
+			let letter = String.fromCharCode(event.keyCode).toLowerCase();
+			if (lettersUsed.indexOf(letter) == -1) {
+				lettersUsed.push(letter);
+			}
+			lettersGuess = lettersUsed.length;
 		}
-		lettersGuess = lettersUsed.length;
 		updateLetters();
 	}
-
-
 
 // populate the correctly guessed letters on the hangman game
 	//put letters in correct spot locations
