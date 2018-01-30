@@ -57,7 +57,7 @@ updateLetters();
 			let letter = String.fromCharCode(event.keyCode).toLowerCase();
 			if (lettersUsed.indexOf(letter) == -1) {
 				lettersUsed.push(letter);
-				guessesRemaining--; //decrements guessesRemaining by one each time
+				guessesRemaining--;
 			}
 			lettersGuess = lettersUsed.length;
 		}
