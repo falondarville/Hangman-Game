@@ -38,16 +38,14 @@ let remainingLetters = currentWord.length;
 		document.getElementById("wins").innerHTML = wins;
 	}
 
-	//TESTING
-
 updateLetters();
-console.log(currentWord);
 
 	// 1. Triggers start of the game when user presses any key
 	// 2. Resets lettersUsed and guessesRemaining when player has guessed max letters (15)
-	// 3 Calculates guessesRemaining
+	// 3. Calculates guessesRemaining
 
-// PROBLEM game reset is not automatically updating after 15 guesses or win. onkeyup applies. 
+// SOLVE: game reset is not automatically updating after 15 guesses or win. onkeyup applies. 
+// SOLVE: game needs to only accept letters that are letters and not symbols
 
 	document.onkeyup = function(event) {
 		if (lettersGuess === 15) {
