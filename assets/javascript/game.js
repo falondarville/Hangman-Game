@@ -47,19 +47,18 @@ updateLetters();
 // SOLVE: game reset is not automatically updating after 15 guesses or win. onkeyup applies. 
 // SOLVE: game needs to only accept letters that are letters and not symbols
 
-	document.onkeyup = function(event) {
-		if (lettersGuess === 15) {
-			currentWord = wordBank[Math.floor(Math.random()*wordBank.length)];
-			lettersUsed = [];
-			guessesRemaining = 15;	
-			document.getElementById("") // add a section with text notifying player of reset
-		} else {
-			let letter = String.fromCharCode(event.keyCode).toLowerCase();
-			if (lettersUsed.indexOf(letter) == -1) {
-				lettersUsed.push(letter);
-				guessesRemaining--;
+		document.onkeyup = function(event) {
+			if (lettersGuess === 15) {
+				currentWord = wordBank[Math.floor(Math.random()*wordBank.length)];
+				lettersUsed = [];
+				guessesRemaining = 15;	
+			} else {
+				let letter = String.fromCharCode(event.keyCode).toLowerCase();
+				if (lettersUsed.indexOf(letter) == -1) {
+					lettersUsed.push(letter);
+					guessesRemaining--;
+				}
+				lettersGuess = lettersUsed.length;
 			}
-			lettersGuess = lettersUsed.length;
+			updateLetters();
 		}
-		updateLetters();
-	}
