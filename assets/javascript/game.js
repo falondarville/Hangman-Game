@@ -21,7 +21,16 @@ updateLetters = function() {
 			wordArray[i] = currentWord[i];
 			correctLetters++;
 		}
+	if (correctLetters === currentWord.length) {
+		currentWord = wordBank[Math.floor(Math.random()*wordBank.length)];
+		lettersUsed = [];
+		wordArray = [];
+		guessesRemaining = 15;
+		wins++;
+	document.getElementById("wordAppear").innerHTML = wordArray.join("");
+	updateLetters();
 	}
+}
 	document.getElementById("wordAppear").innerHTML = wordArray.join("");
 	document.getElementById("lettersGuessed").innerHTML = lettersUsed;
 	document.getElementById("guessesRemaining").innerHTML = guessesRemaining;
@@ -29,6 +38,7 @@ updateLetters = function() {
 }
 
 updateLetters();
+console.log(currentWord);
 
 	// 1. Triggers start of the game when user presses any key
 	// 2. Resets lettersUsed and guessesRemaining when player has guessed max letters (15)
@@ -36,18 +46,6 @@ updateLetters();
 
 // SOLVE: game reset is not automatically updating after 15 guesses or win. onkeyup applies. 
 // SOLVE: game needs to only accept letters that are letters and not symbols
-
-resetWord = function() {
-	if (correctLetters === currentWord.length) {
-		currentWord = wordBank[Math.floor(Math.random()*wordBank.length)];
-		lettersUsed = [];
-		// wordArray = [];
-		guessesRemaining = 15;
-		wins++;
-	document.getElementById("wordAppear").innerHTML = wordArray.join("");
-	updateLetters();
-	}
-}
 
 document.onkeyup = function(event) {
 	if (lettersGuess === 15) {
