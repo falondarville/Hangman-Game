@@ -12,31 +12,21 @@ let remainingLetters = currentWord.length;
 	// 3. Print game statistics to user interface
 	// 4. Adds wins
 
-	updateLetters = function() {
-		let correctLetters = 0;
-		let wordArray = [];
-			for (var i = 0; i < currentWord.length; i++) {
-				wordArray[i] = "  ___  ";
-			if (lettersUsed.indexOf(currentWord[i]) > -1) {
-				wordArray[i] = currentWord[i];
-				correctLetters++;
-			}
+updateLetters = function() {
+	let correctLetters = 0;
+	let wordArray = [];
+	for (var i = 0; i < currentWord.length; i++) {
+		wordArray[i] = "  ___  ";
+		if (lettersUsed.indexOf(currentWord[i]) > -1) {
+			wordArray[i] = currentWord[i];
+			correctLetters++;
 		}
-		if (correctLetters === currentWord.length) {
-			currentWord = wordBank[Math.floor(Math.random()*wordBank.length)];
-			lettersUsed = [];
-			wordArray = [];
-			guessesRemaining = 15;
-			wins++;
-			document.getElementById("wordAppear").innerHTML = wordArray.join("");
-			updateLetters();
-		}
-
-		document.getElementById("wordAppear").innerHTML = wordArray.join("");
-		document.getElementById("lettersGuessed").innerHTML = lettersUsed;
-		document.getElementById("guessesRemaining").innerHTML = guessesRemaining;
-		document.getElementById("wins").innerHTML = wins;
 	}
+	document.getElementById("wordAppear").innerHTML = wordArray.join("");
+	document.getElementById("lettersGuessed").innerHTML = lettersUsed;
+	document.getElementById("guessesRemaining").innerHTML = guessesRemaining;
+	document.getElementById("wins").innerHTML = wins;
+}
 
 updateLetters();
 
@@ -47,18 +37,30 @@ updateLetters();
 // SOLVE: game reset is not automatically updating after 15 guesses or win. onkeyup applies. 
 // SOLVE: game needs to only accept letters that are letters and not symbols
 
-		document.onkeyup = function(event) {
-			if (lettersGuess === 15) {
-				currentWord = wordBank[Math.floor(Math.random()*wordBank.length)];
-				lettersUsed = [];
-				guessesRemaining = 15;	
-			} else {
-				let letter = String.fromCharCode(event.keyCode).toLowerCase();
-				if (lettersUsed.indexOf(letter) == -1) {
-					lettersUsed.push(letter);
-					guessesRemaining--;
-				}
-				lettersGuess = lettersUsed.length;
-			}
-			updateLetters();
+resetWord = function() {
+	if (correctLetters === currentWord.length) {
+		currentWord = wordBank[Math.floor(Math.random()*wordBank.length)];
+		lettersUsed = [];
+		// wordArray = [];
+		guessesRemaining = 15;
+		wins++;
+	document.getElementById("wordAppear").innerHTML = wordArray.join("");
+	updateLetters();
+	}
+}
+
+document.onkeyup = function(event) {
+	if (lettersGuess === 15) {
+		currentWord = wordBank[Math.floor(Math.random()*wordBank.length)];
+		lettersUsed = [];
+		guessesRemaining = 15;	
+	} else {
+		let letter = String.fromCharCode(event.keyCode).toLowerCase();
+		if (lettersUsed.indexOf(letter) == -1) {
+			lettersUsed.push(letter);
+			guessesRemaining--;
 		}
+		lettersGuess = lettersUsed.length;
+	}
+	updateLetters();
+}
