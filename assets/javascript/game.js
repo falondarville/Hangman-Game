@@ -62,3 +62,4 @@ document.onkeyup = function(event) {
 	}
 	updateLetters();
 }
+
