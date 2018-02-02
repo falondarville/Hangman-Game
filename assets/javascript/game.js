@@ -24,11 +24,10 @@ updateLetters = function() {
 	if (correctLetters === currentWord.length) {
 		currentWord = wordBank[Math.floor(Math.random()*wordBank.length)];
 		lettersUsed = [];
-		wordArray = [];
 		guessesRemaining = 15;
 		wins++;
-	document.getElementById("wordAppear").innerHTML = wordArray.join("");
-	updateLetters();
+		document.getElementById("wordAppear").innerHTML = wordArray.join("");
+		updateLetters();
 	}
 }
 	document.getElementById("wordAppear").innerHTML = wordArray.join("");
@@ -37,7 +36,6 @@ updateLetters = function() {
 	document.getElementById("wins").innerHTML = wins;
 }
 
-updateLetters();
 console.log(currentWord);
 
 	// 1. Triggers start of the game when user presses any key
@@ -48,6 +46,12 @@ console.log(currentWord);
 // SOLVE: game needs to only accept letters that are letters and not symbols
 
 document.onkeyup = function(event) {
+	if (guessesRemaining === 0) {
+		lettersUsed = [];
+		lettersGuess = 0;
+		guessesRemaining = 15;
+		updateLetters();
+	}
 	if (lettersGuess === 15) {
 		currentWord = wordBank[Math.floor(Math.random()*wordBank.length)];
 		lettersUsed = [];
