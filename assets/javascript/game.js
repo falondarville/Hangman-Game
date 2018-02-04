@@ -29,8 +29,15 @@ let remainingLetters = currentWord.length;
 		lettersUsed = [];
 		guessesRemaining = 15;
 		lettersGuess = 0;
+		wordArray = [];
 		wins++;
-		updateLetters();
+		for (var i = 0; i < currentWord.length; i++) {
+			wordArray[i] = "  ___  ";
+			if (lettersUsed.indexOf(currentWord[i]) > -1) {
+				wordArray[i] = currentWord[i];
+				correctLetters++;
+			}
+		}
 	}
 	document.getElementById("wordAppear").innerHTML = wordArray.join("");
 	updateDocument();
@@ -52,13 +59,8 @@ console.log(currentWord);
 // SOLVE: game reset is not automatically updating after 15 guesses or win. onkeyup applies. 
 
 document.onkeyup = function(event) {
-	if (guessesRemaining === 0) {
-		lettersUsed = [];
-		lettersGuess = 0;
-		guessesRemaining = 15;
-		updateLetters();
-	}
-	else if (lettersGuess === 15) {
+
+	if (lettersGuess === 15) {
 		currentWord = wordBank[Math.floor(Math.random()*wordBank.length)];
 		lettersUsed = [];
 		guessesRemaining = 15;	
@@ -70,5 +72,13 @@ document.onkeyup = function(event) {
 		}
 		lettersGuess = lettersUsed.length;
 	}
+
+	if (guessesRemaining === 0) {
+		currentWord = wordBank[Math.floor(Math.random()*wordBank.length)];
+		lettersUsed = [];
+		lettersGuess = 0;
+		guessesRemaining = 15;
+	}
+
 	updateLetters();
 }
