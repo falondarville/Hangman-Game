@@ -50,8 +50,6 @@ var updateDocument = function() {
 	document.getElementById("wins").innerHTML = wins;
 }
 
-console.log(currentWord);
-
 	// 1. Triggers start of the game when user presses any key
 	// 2. Resets lettersUsed and guessesRemaining when player has guessed max letters (15)
 	// 3. Calculates guessesRemaining
