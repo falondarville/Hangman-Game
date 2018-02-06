@@ -54,8 +54,6 @@ var updateDocument = function() {
 	// 2. Resets lettersUsed and guessesRemaining when player has guessed max letters (15)
 	// 3. Calculates guessesRemaining
 
-// SOLVE: game reset is not automatically updating after 15 guesses or win. onkeyup applies. 
-
 document.onkeyup = function(event) {
 
 	if (lettersGuess === 15) {
